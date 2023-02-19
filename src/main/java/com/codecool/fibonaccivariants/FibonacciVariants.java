@@ -44,8 +44,13 @@ public class FibonacciVariants {
         return result;
     }
 
-    public static int tailRecursive(int n) {
-        return 0;
+    public static int tailRecursive(int n) {return tailRecursiveFunction(n - 1, 0, 1);
+    }
+
+    private static int tailRecursiveFunction(int n, int a, int b) {
+        additionsCounter++;
+        if (n < 1) return b;
+        return tailRecursiveFunction(n - 1, b, a + b);
     }
 
 }
