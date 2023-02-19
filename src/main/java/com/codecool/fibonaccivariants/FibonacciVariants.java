@@ -8,7 +8,17 @@ public class FibonacciVariants {
     }
 
     public static int iterative(int n) {
-        return 0;
+        int penultimate = 0;
+        int previous = 1;
+        if (n == 0) return penultimate;
+        if (n == 1) return previous;
+        for (int i = 2; i <= n; i++) {
+            int current = penultimate + previous;
+            penultimate = previous;
+            previous = current;
+            additionsCounter++;
+        }
+        return previous;
     }
 
     public static int naiveRecursive(int n) {
