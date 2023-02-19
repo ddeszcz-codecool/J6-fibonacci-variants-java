@@ -1,11 +1,16 @@
 package com.codecool.fibonaccivariants;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FibonacciVariants {
     public static int additionsCounter = 0;
 
     public static void resetCounter() {
         additionsCounter = 0;
     }
+
+    public static Map<Integer, Integer> recursiveWithMemoization = new HashMap<>();
 
     public static int iterative(int n) {
         int penultimate = 0;
@@ -22,11 +27,21 @@ public class FibonacciVariants {
     }
 
     public static int naiveRecursive(int n) {
-        return 0;
+        if ((n == 0) || (n == 1)) return n;
+        additionsCounter++;
+        return naiveRecursive(n-1) + naiveRecursive(n-2);
     }
-
     public static int recursiveWithMemoization(int n) {
-        return 0;
+        additionsCounter++;
+        if (n <= 1){
+            return n;
+        }
+        if (recursiveWithMemoization.containsKey(n)) {
+            return recursiveWithMemoization.get(n);
+        }
+        int result = recursiveWithMemoization(n - 1) + recursiveWithMemoization(n - 2);
+        recursiveWithMemoization.put(n, result);
+        return result;
     }
 
     public static int tailRecursive(int n) {
